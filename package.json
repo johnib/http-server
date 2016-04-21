@@ -1,0 +1,22 @@
+{
+  "name": "http-server",
+  "version": "1.0.0",
+  "description": "Simple http server implemented using express.js ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnib/http-server.git"
+  },
+  "author": "Jonathan Rubin Yaniv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnib/http-server/issues"
+  },
+  "homepage": "https://github.com/johnib/http-server#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
