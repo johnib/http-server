@@ -4,7 +4,8 @@
   "description": "Simple http server implemented using express.js ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,12 @@
   },
   "homepage": "https://github.com/johnib/http-server#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "latest",
+    "express": "^4.13.4",
+    "multer": "^1.1.0",
+    "serve-static": "^1.10.2"
+  },
+  "devDependencies": {
+    "serve-index": "^1.7.3"
   }
 }

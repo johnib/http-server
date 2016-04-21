@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <h1>Image Viewer</h1>
+        <p class="lead">
+            Basic photo layout grid to get you remember what you've seen.
+        </p>
+    </div>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <p><input type="file" name="image">
+        <p><button type="submit">Submit</button>
+    </form>
+
+
+    <div class="col-md-12">
+        <h4>Stored photos</h4>
+        <hr>
+    </div>
+
+    <div id="photos" class="col-md-12">
+    </div>
+</div>
+<script type="text/javascript" src="dist/index.min.js"></script>
+</body>
+</html>
