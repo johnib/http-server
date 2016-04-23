@@ -16,6 +16,10 @@ app.post('/upload', upload.single('image'), function (req, res) {
   res.redirect('/');
 });
 
+app.get('/version', function (req, res) {
+  res.end('0.0.1');
+});
+
 app.listen(port);
 
 console.log('Server listens on port: ' + port);
