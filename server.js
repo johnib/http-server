@@ -3,6 +3,8 @@
 var express = require('express'),
     multer = require('multer');
 
+var port = process.env.PORT || 8080;
+
 var upload = multer({
   dest: __dirname + '/uploads'
 });
@@ -14,5 +16,6 @@ app.post('/upload', upload.single('image'), function (req, res) {
   res.redirect('/');
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(port);
 
+console.log('Server listens on port: ' + port);
