@@ -36,6 +36,29 @@ app.get('/version', function (req, res) {
   res.end('0.0.2');
 });
 
+app.get('/sign-url', function (req, res) {
+  var options = {
+    Bucket: s3Bucket,
+    Key: "images/" + req.query.fileName,
+    Expires: 120, // 2 minutes
+    ContentType: req.query.fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', options, function (err, data) {
+    if (err) {
+      console.error(err);
+      res.end('error');
+      return;
+    }
+
+    res.json({
+      signed_url: data,
+      url: 'https://s3.amazonaws.com/' + s3Bucket + '/' + req.query.fileName
+    });
+  })
+});
+
 app.listen(port);
 
 console.log('Server listens on port: ' + port);
