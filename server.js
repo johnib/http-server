@@ -1,8 +1,10 @@
 "use strict";
 
-var express = require('express'),
-    morgan = require('morgan'),
-    multer = require('multer');
+/* dependencies */
+var aws          = require('aws-sdk'),
+    express      = require('express'),
+    morgan       = require('morgan'),
+    multer       = require('multer');
 
 var port = process.env.PORT || 8080;
 
@@ -11,8 +13,7 @@ var upload = multer({
 });
 
 var app = express();
-
-app.use(morgan('combined'));
+app.use(morgan('combined')); // register morgan library for logging
 app.use(express.static(__dirname + '/public', {'index': ['index.html']}));
 app.post('/upload', upload.single('image'), function (req, res) {
   res.redirect('/');
