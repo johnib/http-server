@@ -17,7 +17,7 @@ app.post('/upload', upload.single('image'), function (req, res) {
 });
 
 app.get('/version', function (req, res) {
-  res.end('0.0.1');
+  res.end('0.0.2');
 });
 
 app.listen(port);
