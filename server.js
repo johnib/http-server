@@ -6,7 +6,23 @@ var aws          = require('aws-sdk'),
     morgan       = require('morgan'),
     multer       = require('multer');
 
-var port = process.env.PORT || 8080;
+/* environment variables */
+var port         = process.env.PORT || 8080,
+    accessKeyID  = process.env.AccessKeyID,
+    secretKey    = process.env.SecretKey,
+    region       = process.env.Region,
+    s3Bucket     = process.env.S3Bucket,
+    sqsQueue     = process.env.SQSQueue;
+
+/* AWS setup */
+aws.config.update({
+  accessKeyId: accessKeyID,
+  secretAccessKey: secretKey,
+  region: region,
+  logger: process.stdout
+});
+
+var s3               = new aws.S3();
 
 var upload = multer({
   dest: __dirname + '/uploads'
