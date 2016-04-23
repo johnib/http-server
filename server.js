@@ -31,9 +31,6 @@ var upload = multer({
 var app = express();
 app.use(morgan('combined')); // register morgan library for logging
 app.use(express.static(__dirname + '/public', {'index': ['index.html']}));
-app.post('/upload', upload.single('image'), function (req, res) {
-  res.redirect('/');
-});
 
 app.get('/version', function (req, res) {
   res.end('0.0.2');
