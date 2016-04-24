@@ -3,16 +3,15 @@
 /* dependencies */
 var aws          = require('aws-sdk'),
     express      = require('express'),
-    morgan       = require('morgan'),
-    multer       = require('multer');
+    morgan = require('morgan');
 
 /* environment variables */
-var port         = process.env.PORT || 8080,
+var port = process.env.PORT || 8080,
     accessKeyID  = process.env.AccessKeyID,
     secretKey    = process.env.SecretKey,
-    region       = process.env.Region,
-    s3Bucket     = process.env.S3Bucket,
-    sqsQueue     = process.env.SQSQueue;
+    region = process.env.Region || 'us-east-1',
+    s3Bucket = process.env.S3Bucket || 'image-viewer-app',
+    sqsQueue = process.env.SQSQueue || 'https://sqs.us-east-1.amazonaws.com/314570958983/image-viewer-app-queue';
 
 /* AWS setup */
 aws.config.update({
@@ -24,16 +23,12 @@ aws.config.update({
 
 var s3               = new aws.S3();
 
-var upload = multer({
-  dest: __dirname + '/uploads'
-});
-
 var app = express();
 app.use(morgan('combined')); // register morgan library for logging
 app.use(express.static(__dirname + '/public', {'index': ['index.html']}));
 
 app.get('/version', function (req, res) {
-  res.end('0.0.2');
+  res.end('0.1.0');
 });
 
 app.get('/sign-url', function (req, res) {
