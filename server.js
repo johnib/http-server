@@ -45,14 +45,14 @@ app.get('/sign-url', function (req, res) {
   s3.getSignedUrl('putObject', options, function (err, data) {
     if (err) {
       console.error(err);
-      res.end('error');
-      return;
-    }
+      res.json(err);
 
-    res.json({
-      signed_url: data,
-      url: 'https://s3.amazonaws.com/' + s3Bucket + '/' + s3KeyPrefix + req.query.fileName
-    });
+    } else {
+      res.json({
+        signed_url: data,
+        url: 'https://s3.amazonaws.com/' + s3Bucket + '/' + s3KeyPrefix + req.query.fileName
+      });
+    }
   })
 });
 
