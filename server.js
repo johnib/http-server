@@ -21,7 +21,9 @@ aws.config.update({
   logger: process.stdout
 });
 
-var s3               = new aws.S3();
+var s3 = new aws.S3(),
+    s3KeyPrefix = 'images/',
+    s3SignedUrlTTL = 120; // seconds
 
 var app = express();
 app.use(morgan('combined')); // register morgan library for logging
@@ -34,8 +36,8 @@ app.get('/version', function (req, res) {
 app.get('/sign-url', function (req, res) {
   var options = {
     Bucket: s3Bucket,
-    Key: "images/" + req.query.fileName,
-    Expires: 120, // 2 minutes
+    Key: s3KeyPrefix + req.query.fileName,
+    Expires: s3SignedUrlTTL,
     ContentType: req.query.fileType,
     ACL: 'public-read'
   };
@@ -49,7 +51,7 @@ app.get('/sign-url', function (req, res) {
 
     res.json({
       signed_url: data,
-      url: 'https://s3.amazonaws.com/' + s3Bucket + '/' + req.query.fileName
+      url: 'https://s3.amazonaws.com/' + s3Bucket + '/' + s3KeyPrefix + req.query.fileName
     });
   })
 });
