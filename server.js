@@ -25,10 +25,6 @@ var s3 = new aws.S3(),
     s3KeyPrefix = 'images/',
     s3SignedUrlTTL = 120; // seconds
 
-morgan.token('date', function () {
-  return new Date().toString();
-});
-
 var app = express();
 app.use(morgan('combined')); // register morgan library for logging
 app.use(express.static(__dirname + '/public', {'index': ['index.html']}));
